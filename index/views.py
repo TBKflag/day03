@@ -30,9 +30,23 @@ def addauthor_views(request):
     # obj.save()
     # return HttpResponse('add ok')
     dic={
-        'title':'macbook',
-        'publicate_date':'1980-12-21',
+        'title':'travisbook',
+        'publicate_date':'2020-12-21',
     }
     obj = Book(**dic)
     obj.save()
     return HttpResponse('add ok')
+
+
+def authorrall_views(request):
+    #查询ａｕｔｈｏｒ实体中所有的数据
+    # authors=Author.objects.all()
+    # # print(authors)
+    # for au in authors:
+    #     print(au.name+',',au.age,','+au.email)
+    # return HttpResponse('query ok')
+    #通过ｖａｌｕｅｓ查询部分列的数据
+    authors=Author.objects.values('name','age')
+    for au in authors:
+        print(au['name']+',', au['age'])
+    return HttpResponse('query ok')

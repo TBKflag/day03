@@ -8,4 +8,5 @@ urlpatterns=[
 
 urlpatterns += [
     url(r'^03_addauthor/$',addauthor_views),
+    url(r'04_all/$',authorrall_views)
 ]
