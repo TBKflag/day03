@@ -69,3 +69,12 @@ def all_views(request):
     authors=Author.objects.all()
     #locals函数可以把所有的变量封装成字典
     return render(request,'03_author.html',locals())
+    # au = Author.objects.get(id=1)
+    # au.name = '王宝强'
+    # au.age = 35
+    # au.save()
+    # return HttpResponse('ok')
+
+def delete_views(respect,aid):
+    author=Author.objects.get(id=aid).delete()
+    return HttpResponse('删除成功')

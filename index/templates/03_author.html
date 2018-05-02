@@ -9,7 +9,8 @@
   <title>Document</title>
   <style>
 	tr,td{
-		width:100px;		
+		height:10px;
+		width: 150px;
 	}
 	#main{
 		border:1px solid;
@@ -35,13 +36,13 @@
                 <td>邮箱</td>
                 <td>操作</td>
             </tr>
-            {% for au in authors %}
+			{% for au in authors %}
             <tr>
                 <td>{{au.name}}</td>
                 <td>{{au.age}}</td>
                 <td>{{au.email}}</td>
                 <td>
-                    <a href="#">delete</a>
+                    <a href="{% url 'del' au.id %}">delete</a>
                     <a href="#">change</a>
                 </td>
             </tr>
