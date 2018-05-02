@@ -56,8 +56,11 @@ def authorrall_views(request):
     # return HttpResponse('query ok')
 
     # 通过ｅｘｃｌｕｄｅ()实现条件取反
-    authors=Author.objects.exclude(age=18)
+    authors=Author.objects.filter(age=18)
+    # 使用__ｃｏｎｔａｉｎｓ查询
+    authors=Author.objects.filter(email__contains='d')
+    print('----------------------------------------')
     for au in authors:
         print(au.name, au.age, au.email)
     return HttpResponse('query ok')
-    
+
