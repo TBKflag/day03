@@ -46,7 +46,18 @@ def authorrall_views(request):
     #     print(au.name+',',au.age,','+au.email)
     # return HttpResponse('query ok')
     #通过ｖａｌｕｅｓ查询部分列的数据
-    authors=Author.objects.values('name','age')
+    # authors=Author.objects.values('name','age')
+    # for au in authors:
+    #     print(au['name']+',', au['age'])
+    #通过order_by实现排序
+    # authors = Author.objects.order_by('-age')
+    # for au in authors:
+    #     print(au.name+',', au.age, au.email)
+    # return HttpResponse('query ok')
+
+    # 通过ｅｘｃｌｕｄｅ()实现条件取反
+    authors=Author.objects.exclude(age=18)
     for au in authors:
-        print(au['name']+',', au['age'])
+        print(au.name, au.age, au.email)
     return HttpResponse('query ok')
+    
