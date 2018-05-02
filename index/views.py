@@ -21,11 +21,18 @@ def addauthor_views(request):
     # Author.objects.create(name='noword', age=65, email='noword@163.com')
     # return HttpResponse('add ok')
     # 使用字典构建对象，并调用其save()完成增加
+    # dic={
+    #     'name':'trank',
+    #     'age':18,
+    #     'email':'hahaha@163.com',
+    # }
+    # obj=Author(**dic)
+    # obj.save()
+    # return HttpResponse('add ok')
     dic={
-        'name':'trank',
-        'age':18,
-        'email':'hahaha@163.com',
+        'title':'macbook',
+        'publicate_date':'1980-12-21',
     }
-    obj=Author(**dic)
+    obj = Book(**dic)
     obj.save()
     return HttpResponse('add ok')
