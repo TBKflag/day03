@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	tr,td{
+		width:100px;		
+	}
+	#main{
+		border:1px solid;
+		border-collapse:collapse;
+        width:780px;
+	}
+  </style>
+ </head>
+ <body>	
+	<table>
+		<tr>
+		<!-- <td><input type="text" placeholder='商品名称' id='produceName' value=1></td>
+		<td><input type="text" placeholder='商品价格' id='producePrice' value=1></td>
+		<td><input type="text" placeholder='购买数量' id='produceNum' value=1></td> -->
+		<!-- <td><button onclick='add()'>增加</button></td> -->
+		</tr>
+	</table>
+	<div id='main'>
+		<table>
+			<tr>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>邮箱</td>
+                <td>操作</td>
+            </tr>
+            {% for au in authors %}
+            <tr>
+                <td>{{au.name}}</td>
+                <td>{{au.age}}</td>
+                <td>{{au.email}}</td>
+                <td>
+                    <a href="#">delete</a>
+                    <a href="#">change</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+	</div>
+	<script src='gebyid.js'></script>
+	<script>
+		function add(){
+			//获取3个文本框的值，并创建2个按钮
+			var prduct_name={{'name'}};
+			var pro_price={{'age'}};
+			var pro_num={{'email'}};
+			
+			var line=document.createElement('tr');
+			var name=document.createElement('td');
+			var price=document.createElement('td');
+			var num=document.createElement('td');
+			var bt=document.createElement('td');
+			var btdelete=document.createElement('button');
+			var btchange=document.createElement('button');
+			//为删除和修改按钮绑定事件
+			btdelete.onclick=function(){
+				$('main').removeChild(btdelete.parentNode.parentNode);
+			}
+			btchange.onclick=function(){
+				console.log(btchange.parentNode.previousSibling);
+				var changebox=btchange.parentNode.previousSibling;
+				if (btchange.innerHTML=='修改'){
+					var num=changebox.innerHTML;
+					changebox.innerHTML="";
+					var inputbox=document.createElement('input');
+					inputbox.type='text';
+					inputbox.value=num;
+					inputbox.onkeypress=function(event){
+						var reg=/\d*/g;						
+						if((event.key).search(/\d+/g)!=-1){return true}
+						return false;
+					}
+					changebox.appendChild(inputbox);
+					btchange.innerHTML='确定';
+				}else{
+					var num=changebox.children[0].value;
+					console.log(num);
+					if(num>=0){
+					changebox.innerHTML=num;
+					btchange.innerHTML='修改';
+					}else{
+					alert('请输入大于0的数字');
+					}
+				}
+			}
+			
+			btdelete.innerHTML='删除';
+			btchange.innerHTML='修改';
+			//添加动态元素属性
+			line.className='line';
+			name.innerHTML=prduct_name;
+			price.innerHTML=pro_price;
+			num.innerHTML=pro_num;
+			//将tr添加到body中
+			bt.appendChild(btdelete);
+			bt.appendChild(btchange);
+			line.appendChild(name);
+			line.appendChild(price);
+			line.appendChild(num);
+			line.appendChild(bt);
+
+			$('main').appendChild(line);
+		}
+	</script>
+	
+ </body>
+</html>

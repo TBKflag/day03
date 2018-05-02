@@ -64,3 +64,8 @@ def authorrall_views(request):
         print(au.name, au.age, au.email)
     return HttpResponse('query ok')
 
+
+def all_views(request):
+    authors=Author.objects.all()
+    #locals函数可以把所有的变量封装成字典
+    return render(request,'03_author.html',locals())
