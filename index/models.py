@@ -16,6 +16,7 @@ class Author(models.Model):
     name=models.CharField(max_length=20)
     age= models.IntegerField()
     email=models.EmailField(null=True)
+    isactive=models.BooleanField(default=True)
 
 class Book(models.Model):
     title=models.CharField(max_length=20)

@@ -21,21 +21,21 @@ def addauthor_views(request):
     # Author.objects.create(name='noword', age=65, email='noword@163.com')
     # return HttpResponse('add ok')
     # 使用字典构建对象，并调用其save()完成增加
-    # dic={
-    #     'name':'trank',
-    #     'age':18,
-    #     'email':'hahaha@163.com',
-    # }
-    # obj=Author(**dic)
-    # obj.save()
-    # return HttpResponse('add ok')
     dic={
-        'title':'travisbook',
-        'publicate_date':'2020-12-21',
+        'name':'trank',
+        'age':18,
+        'email':'hahaha@163.com',
     }
-    obj = Book(**dic)
+    obj=Author(**dic)
     obj.save()
     return HttpResponse('add ok')
+    # dic={
+    #     'title':'travisbook',
+    #     'publicate_date':'2020-12-21',
+    # }
+    # obj = Book(**dic)
+    # obj.save()
+    # return HttpResponse('add ok')
 
 
 def authorrall_views(request):
@@ -76,5 +76,14 @@ def all_views(request):
     # return HttpResponse('ok')
 
 def delete_views(respect,aid):
-    author=Author.objects.get(id=aid).delete()
+    author=Author.objects.get(id=aid)
+    author.isactive=False
+    author.save()
     return HttpResponse('删除成功')
+
+
+def change_views(respect,id):
+    author=Author.objects.get(id=id)
+    print(author.age)
+    return render(respect,'04_au.html',locals())
+

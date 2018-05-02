@@ -37,15 +37,17 @@
                 <td>操作</td>
             </tr>
 			{% for au in authors %}
+			{% if au.isactive %}
             <tr>
                 <td>{{au.name}}</td>
                 <td>{{au.age}}</td>
                 <td>{{au.email}}</td>
                 <td>
                     <a href="{% url 'del' au.id %}">delete</a>
-                    <a href="#">change</a>
+                    <a href="{% url 'change' au.id %}">change</a>
                 </td>
-            </tr>
+			</tr>
+			{% endif %}
             {% endfor %}
         </table>
 	</div>

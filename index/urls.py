@@ -11,4 +11,5 @@ urlpatterns += [
     url(r'04_all/$',authorrall_views),
     url(r'^05_all/$',all_views),
     url(r'^del/(\d)*/$', delete_views,name='del'),
+    url(r'^change/(\d)*/$',change_views,name='change'),
 ]
