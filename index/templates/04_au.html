@@ -5,21 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        input{
+            width:100px;
+        }
+    </style>
 </head>
 <body>
-
+<form action="/update/" method="POST">
     <table>
         <tr>
-            <td><input type="text" value={{author.name}}></td>        
+            <td>姓名</td>
+            <td><input type="text" name='name' value={{author.name}}></td>
         </tr>
         <tr>
-            <td><input type="text" value={{author.age}}></td>        
+            <td>年龄</td>
+            <td><input type="number" name='age' value={{author.age}}></td>        
         </tr>
         <tr>
-            <td><input type="text" value={{author.email}}></td>        
+            <td>邮箱</td>
+            <td><input type="email" name='email' value={{author.email}}></td>        
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value='确认'></td>
         </tr>
 
     </table>
-
+</form>
 </body>
 </html>

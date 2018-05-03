@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from .models import *
-from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -68,22 +68,28 @@ def authorrall_views(request):
 def all_views(request):
     authors=Author.objects.all()
     #locals函数可以把所有的变量封装成字典
-    return render(request,'03_author.html',locals())
+    return render(request, '03_author.html', locals())
     # au = Author.objects.get(id=1)
     # au.name = '王宝强'
     # au.age = 35
     # au.save()
     # return HttpResponse('ok')
 
-def delete_views(respect,aid):
+
+def delete_views(request, aid):
     author=Author.objects.get(id=aid)
     author.isactive=False
     author.save()
-    return HttpResponse('删除成功')
+    # return HttpResponse('删除成功')
+    #使用转发跳转到　all_views() 视图
+    # return all_views(request)
+    # 重定向,需要导入httpresponseRedirect
+    # 重新定向到０５＿ａｌｌ
+    return HttpResponseRedirect('/05_all/')
 
 
-def change_views(respect,id):
+def change_views(request, id):
     author=Author.objects.get(id=id)
     print(author.age)
-    return render(respect,'04_au.html',locals())
+    return render(request, '04_au.html', locals())
 
