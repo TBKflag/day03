@@ -11,13 +11,48 @@ class Publisher(models.Model):
     country = models.CharField(max_length=20)
     website = models.URLField()
     #URLField也是varchar，默认200
+    def __str__(self):
+        return self.name
+    class Meta:
+        db_table = 'publisher'
+        verbose_name='出版社'
+        verbose_name_plural=verbose_name
+
 
 class Author(models.Model):
-    name=models.CharField(max_length=20)
-    age= models.IntegerField()
-    email=models.EmailField(null=True)
-    isactive=models.BooleanField(default=True)
+    name = models.CharField(max_length=20, verbose_name='姓名')
+    age = models.IntegerField(verbose_name='年龄')
+    email = models.EmailField(null=True,verbose_name="邮箱")
+    isactive = models.BooleanField(default=True,verbose_name='启用')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'author'
+        verbose_name = '作者'
+        verbose_name_plural = '作者'
+        ordering = ["age","name"]
 
 class Book(models.Model):
     title=models.CharField(max_length=20)
     publicate_date=models.DateField()
+
+    def __str__(self):
+        return self.title
+    class Meta:
+        db_table='book'
+        verbose_name="书籍"
+        verbose_name_plural=verbose_name
+        ordering=["-publicate_date"]
+
+class wife(models.Model):
+    name=models.CharField(max_length=30)
+    age=models.IntegerField()
+    author=models.OneToOneField(Author)
+    def __str__(self):
+        return self.name
+    class Meta:
+        db_table='wife'
+        verbose_name='妻子'
+        verbose_name_plural=verbose_name

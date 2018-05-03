@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import *
+from django.db.models import F,Q
 
 
 # Create your views here.
@@ -93,3 +94,15 @@ def change_views(request, id):
     print(author.age)
     return render(request, '04_au.html', locals())
 
+def doF_views(request):
+    Author.objects.all().update(age=F('age')+10)
+    return HttpResponse('ok')
+
+def doQ_views(request):
+    authors=Author.objects.filter(Q(id=2)|Q(age__gte=15))
+    return render(request, '03_author.html',locals())
+
+def oto_views(request):
+    w=wife.objects.get(id=3)
+    a=w.author
+    return render(request,'05_oto.html',locals())
