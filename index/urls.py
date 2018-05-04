@@ -15,4 +15,7 @@ urlpatterns += [
     url(r'08doF', doF_views),
     url(r'10_doQ',doQ_views),
     url(r'11_oto/', oto_views),
+    url(r'12_otm/',otm_views),
+    url(r'^13_mtm/$',mtm_views),
+    url(r'14count/', aucount_views)
 ]

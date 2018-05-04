@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>正向查询：通过book查询author</h2>
+    <h3>book：{{book.title}}</h3>
+    <h3>publicate_date:{{book.publicate_date}}</h3>
+    {% for a in authors %}
+    <h3>作者：{{a.name}}</h3>
+    {% endfor %}
+<p>_________________________________________</p>
+    <h2>反向查询</h2>
+    <h3>author:{{author.name}}</h3>
+    <h3>age:{{author.age}}</h3>
+    {% for i in books %}
+    <h3>书籍:{{i.title}}</h3>
+    <h3>出版日期：{{i.publicate_date}}</h3>
+    {% endfor %}
+</body>
+</html>

@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Publisher(models.Model):
     name = models.CharField(max_length=30)
     #CharField表示varchar
@@ -18,8 +17,14 @@ class Publisher(models.Model):
         verbose_name='出版社'
         verbose_name_plural=verbose_name
 
-
+# 声明自定义的ｏｂｊｅｃｔｓ
+class AuthorManager(models.Manager):
+    def aucount(self):
+        countnum = self.filter(age__lt=30)
+        return countnum
 class Author(models.Model):
+    # 使用authorManager 覆盖objects
+    objects=AuthorManager()
     name = models.CharField(max_length=20, verbose_name='姓名')
     age = models.IntegerField(verbose_name='年龄')
     email = models.EmailField(null=True,verbose_name="邮箱")
@@ -37,6 +42,9 @@ class Author(models.Model):
 class Book(models.Model):
     title=models.CharField(max_length=20)
     publicate_date=models.DateField()
+    # 增加对Publisher的引用
+    publisher=models.ForeignKey(Publisher,null=True)
+    author=models.ManyToManyField(Author)
 
     def __str__(self):
         return self.title

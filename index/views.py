@@ -106,3 +106,29 @@ def oto_views(request):
     w=wife.objects.get(id=3)
     a=w.author
     return render(request,'05_oto.html',locals())
+
+
+def otm_views(request):
+    # 通过书籍查询对应的ｐｕｂｌｉｈｓｅｒ
+    b=Book.objects.get(id=8)
+    publisher=b.publisher
+    # return render(request,'06_otm.html',locals())
+    # 通过ｐｕｂｌｉｓｈｅｒ查询对应的所有ｂｏｏｋ
+    pub = Publisher.objects.get(id=3)
+    books=pub.book_set.all()
+    print(books)
+    return render(request, '06_otm.html', locals())
+
+
+def mtm_views(request):
+    # 正向查询
+    book = Book.objects.get(id=9)
+    authors = book.author.all()
+    # 反向查询
+    author = Author.objects.get(id=3)
+    books = author.book_set.all()
+
+    return render(request, '07mtm.html', locals())
+
+def aucount_views(request):
+    return HttpResponse(Author.objects.aucount())

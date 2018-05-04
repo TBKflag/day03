@@ -12,7 +12,6 @@ class AuthorAdmin(admin.ModelAdmin):
     fieldsets=(
         ('基本信息',{
             'fields':['name','age'],
-            'classes':['collapse'],
             }),
         ('高级信息', {
             'fields': ['email', 'isactive'],
