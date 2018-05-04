@@ -12,11 +12,15 @@
     </style>
 </head>
 <body>
-<form action="/update/" method="POST">
+<form action="/updatedb/" method="post">
+    {% csrf_token %}
     <table>
         <tr>
             <td>姓名</td>
-            <td><input type="text" name='name' value={{author.name}}></td>
+            <td>
+                <input type="text" name='name' value={{author.name}}>
+                <input type="hidden" name='id' value={{author.id}}>
+            </td>
         </tr>
         <tr>
             <td>年龄</td>

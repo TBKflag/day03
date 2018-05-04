@@ -94,6 +94,17 @@ def change_views(request, id):
     print(author.age)
     return render(request, '04_au.html', locals())
 
+def update_db(request):
+    author = Author.objects.get(id=request.POST['id'])
+    author.name = request.POST['name']
+    author.age = request.POST['age']
+    author.email = request.POST['email']
+    author.save()
+    authors=Author.objects.all()
+    return HttpResponseRedirect('/05_all')
+    # return render(request,'03_author.html',locals())
+
+
 def doF_views(request):
     Author.objects.all().update(age=F('age')+10)
     return HttpResponse('ok')
