@@ -19,8 +19,8 @@ class Publisher(models.Model):
 
 # 声明自定义的ｏｂｊｅｃｔｓ
 class AuthorManager(models.Manager):
-    def aucount(self):
-        countnum = self.filter(age__lt=30)
+    def aucount(self,agenum):
+        countnum = self.filter(age__lt=agenum)
         return countnum
 class Author(models.Model):
     # 使用authorManager 覆盖objects
@@ -39,7 +39,12 @@ class Author(models.Model):
         verbose_name_plural = '作者'
         ordering = ["age","name"]
 
+class BookManager(models.Manager):
+    def title_count(self,keywords):
+        # 返回书名中包含指定关键词的对象
+        return self.filter(title__contains=keywords)
 class Book(models.Model):
+    objects=BookManager()
     title=models.CharField(max_length=20)
     publicate_date=models.DateField()
     # 增加对Publisher的引用

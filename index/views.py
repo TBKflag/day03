@@ -131,4 +131,5 @@ def mtm_views(request):
     return render(request, '07mtm.html', locals())
 
 def aucount_views(request):
-    return HttpResponse(Author.objects.aucount())
+    # return HttpResponse(Author.objects.aucount(25))
+    return HttpResponse(Book.objects.title_count('o'))
